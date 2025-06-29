@@ -5,6 +5,7 @@ import musicLibrary
 import requests
 from openai import OpenAI
 
+#jarvis assistant
 recognizer = sr.Recognizer()
 engine = pyttsx3.init() 
 
