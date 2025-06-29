@@ -3,7 +3,10 @@ import webbrowser
 import pyttsx3
 import musicLibrary
 import requests
+import pyautogui
 from openai import OpenAI
+import pytesseract
+from PIL import Image
 
 #jarvis assistant
 recognizer = sr.Recognizer()
@@ -43,6 +46,27 @@ def processCommand(c):
 
     elif "news" in c.lower():
         webbrowser.open("https://www.ndtv.com/latest")
+
+    elif"screenshot" in c.lower():
+        pyautogui.screenshot("screenshot.png")
+        speak("Screenshot taken.")
+
+    elif "read image" in c.lower():
+        # pytesseract.pytesseract.tesseract_cmd = r'C:\Users\garim\AppData\Local\Programs\Tesseract-OCR'
+        pytesseract.pytesseract.tesseract_cmd = r'C:\Users\garim\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+
+
+    image_path =r"C:\Users\garim\OneDrive\Pictures\Saved Pictures\Different-Language.png"  # Or take latest screenshot or image file
+
+    try:
+        img = Image.open(image_path)
+        text = pytesseract.image_to_string(img)
+        speak("Reading the document.")
+        print(text)
+        speak(text)
+    except Exception as e:
+        speak("Sorry, I could not read the image.")
+        print(f"OCR error: {e}")
 
     else:
         # Let OpenAI handle the request
