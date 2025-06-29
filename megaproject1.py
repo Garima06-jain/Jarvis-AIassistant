@@ -8,7 +8,6 @@ from openai import OpenAI
 import pytesseract
 from PIL import Image
 
-#jarvis assistant
 recognizer = sr.Recognizer()
 engine = pyttsx3.init() 
 
@@ -56,7 +55,7 @@ def processCommand(c):
         pytesseract.pytesseract.tesseract_cmd = r'C:\Users\garim\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
 
 
-    image_path =r"C:\Users\garim\OneDrive\Pictures\Saved Pictures\Different-Language.png"  # Or take latest screenshot or image file
+    image_path =r"C:\Users\garim\OneDrive\Pictures\Screenshots\Screenshot 2024-12-05 153742.png"  # Or take latest screenshot or image file
 
     try:
         img = Image.open(image_path)
@@ -72,7 +71,6 @@ def processCommand(c):
         # Let OpenAI handle the request
         output = aiProcess(c)
         speak(output) 
-
 
 
 
